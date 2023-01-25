@@ -1,0 +1,6 @@
+.vscode
+.DS_Store
+/target
+data
+jotsy
+.sky_pid

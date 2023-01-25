@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-app
+  labels:
+    app: notes-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes-app
+  template:
+    metadata:
+      labels:
+        app: notes-app
+    spec:
+      containers:
+        - name: notes-app
+          image: ohsayan/jotsy:latest
+          ports:
+            - containerPort: 2022
+          env:
+            - name: 'JOTSY_SKY_HOST'
+              value: '10.106.57.228'
+            - name: 'JOTSY_SKY_PORT'
+              value: '2003'
+            - name: 'JOTSY_HOST'
+              value: '172.17.0.5'
+            - name: 'JOTSY_PORT'
+              value: '2022'
+            - name: 'JOTSY_SIGNUP_ENABLED'
+              value: 'true'
+            - name: 'JOTSY_DEPLOY_PROD'
+              value: 'true'

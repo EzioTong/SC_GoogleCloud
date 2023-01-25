@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  skydb:
+    image: skytable/sdb:v0.7.6
+    ports:
+      - "127.0.0.1:2003:2003"
+    volumes:
+      - ./jotsy/skytable:/var/lib/skytable
+    networks:
+      - jotsy
+    command: skyd --noart -h 0.0.0.0 -p 2003
+  app:
+    image: ohsayan/jotsy:latest
+    depends_on:
+      - skydb
+    environment:
+      - JOTSY_HOST=0.0.0.0
+      - JOTSY_PORT=2022
+      - JOTSY_SKY_HOST=skydb
+      - JOTSY_SKY_PORT=2003
+      - JOTSY_DEPLOY_PROD=true
+    ports:
+      - "127.0.0.1:2022:2022"
+    networks:
+      - jotsy
+networks:
+  jotsy:
