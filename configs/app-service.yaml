@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: notes-app
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 2022

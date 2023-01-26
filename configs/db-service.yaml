@@ -8,4 +8,4 @@ spec:
   ports:
     - protocol: TCP
       port: 2003
-      targetPort: 2003 
+      targetPort: 2003
